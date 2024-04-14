@@ -12,6 +12,8 @@ import { MessageComponent } from '../message/message.component';
   styleUrl: './form.component.css'
 })
 export class FormComponent {
+
+  // for error message display
   showMessage = false;
   showNameText = false;
   showSurnameText = false;
@@ -31,6 +33,7 @@ export class FormComponent {
 
   message: { text: string, type: string } = { text: '', type: 'info' }; 
 
+  // on submit control if the form is valid or not
   onSubmit() {
     this.showMessage = false;
     if (this.form.valid) {
@@ -51,6 +54,7 @@ export class FormComponent {
     }, 6000)
   }
 
+  // on reset form returns to it's initial state
   onReset() {
     this.showMessage = false
     this.form.reset();
@@ -69,6 +73,7 @@ export class FormComponent {
     }, 6000)
   }
 
+  // to check if displaying error message is needed
   requiredCheck(field: string) {
     const control = this.form.get(field);
 
@@ -78,7 +83,6 @@ export class FormComponent {
       this.setShowText(field, false);
     }
   }
-
   requiredAndValidCheck(field: string) {
     const control = this.form.get(field);
 
@@ -90,7 +94,6 @@ export class FormComponent {
       this.setShowText(field, false, false);
     }
   }
-
   private setShowText(field: string, showText: boolean, showValid: boolean = false) {
     switch (field) {
       case 'name':
