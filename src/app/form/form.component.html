@@ -1,0 +1,39 @@
+<div class="form-container">
+    <form [formGroup]="form" class="form">
+        <app-message *ngIf="showMessage" [text]="message.text" [type]="message.type"></app-message>
+        <div class="form-group">
+            <label for="name">Name:<span class="required">*</span></label>
+            <input id="name" type="text" formControlName="name" (blur)="requiredCheck('name')" class="input-field"
+                [ngClass]="{'error-border': showNameText}" placeholder="Enter your name">
+            <p *ngIf="showNameText" class="error-message">Name is required</p>
+        </div>
+
+        <div class="form-group">
+            <label for="surname">Surname:<span class="required">*</span></label>
+            <input id="surname" type="text" formControlName="surname" (blur)="requiredCheck('surname')" class="input-field"
+                [ngClass]="{'error-border': showSurnameText}" placeholder="Enter your surname">
+            <p *ngIf="showSurnameText" class="error-message">Surname is required</p>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:<span class="required">*</span></label>
+            <input id="email" type="email" formControlName="email" (blur)="requiredAndValidCheck('email')"
+                class="input-field" [ngClass]="{'error-border': showEmailText || showEmailValid} " placeholder="Enter your email">
+            <p *ngIf="showEmailText" class="error-message">Email is required</p>
+            <p *ngIf="showEmailValid" class="error-message">Invalid email format</p>
+        </div>
+
+        <div class="form-group">
+            <label for="experience">Work experience (in months):<span class="required">*</span></label>
+            <input id="experience" type="text" formControlName="experience" (blur)="requiredAndValidCheck('experience')"
+                class="input-field" [ngClass]="{'error-border': showExperienceText || showExperienceValid}" placeholder="Enter your work experience">
+            <p *ngIf="showExperienceText" class="error-message">Work experience is required</p>
+            <p *ngIf="showExperienceValid" class="error-message">Please enter a number with at most one decimal place (e.g., 12, 6.5)</p>
+        </div>
+
+        <div class="button-group">
+            <button type="submit" (click)="onSubmit()" class="submit-button">Submit</button>
+            <button type="button" (click)="onReset()" class="reset-button">Reset</button>
+        </div>
+    </form>
+</div>

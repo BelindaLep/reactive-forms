@@ -1,0 +1,6 @@
+<div class="message-container">
+    <div class="app-message"
+        [ngClass]="{ 'success': type === 'success', 'error': type === 'error', 'info': type === 'info' }">
+        {{ text }}
+    </div>
+</div>
